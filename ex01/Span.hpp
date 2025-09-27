@@ -15,10 +15,11 @@ class Span
 		~Span(void);
 
 		void	addNumber(int toAdd);
-		std::vector<int>::iterator shortestSpan(void);
-		std::vector<int>::iterator longestSpan(void);
+		unsigned int shortestSpan(void);
+		unsigned int longestSpan(void);
+		void	printArray(void) const;
 
 	private:
 		unsigned int _N;
 		std::vector<int> array;
-};		
+};
