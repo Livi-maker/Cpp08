@@ -3,17 +3,9 @@
 int main()
 {
 	{
-		Span prova(5);
+		Span prova(9999);
 
-		try
-		{
-			for (int i = 0; i < 100; i++)
-				prova.addNumber(i);
-		}
-		catch (std::exception &e)
-		{
-		std::cout << e.what() << std::endl;
-		}
+		prova.addRange(1, 100000);
 		prova.printArray();
 		std::cout << prova.shortestSpan() << std::endl;
 	}

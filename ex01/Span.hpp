@@ -15,6 +15,7 @@ class Span
 		~Span(void);
 
 		void	addNumber(int toAdd);
+		void	addRange(int min, int max);
 		unsigned int shortestSpan(void);
 		unsigned int longestSpan(void);
 		void	printArray(void) const;
