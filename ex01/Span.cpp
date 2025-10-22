@@ -48,6 +48,22 @@ void	Span::addRange(int min, int max)
 	}
 }
 
+void	Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	for (std::vector<int>::iterator it = begin; it < end; it++)
+	{
+		try
+		{
+			addNumber(*it);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+			break ;
+		}
+	}
+}
+
 void	Span::printArray(void) const
 {
 	for (size_t i = 0; i < array.size(); i++)
