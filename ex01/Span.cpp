@@ -1,5 +1,7 @@
 #include "Span.hpp"
 
+std::string Span::Error::toPrint = "prova";
+
 Span::Span(void) : _N(0), array(0)
 {}
 
@@ -25,7 +27,7 @@ Span&	Span::operator= (const Span& ref)
 void	Span::addNumber(int toAdd)
 {
 	if (_N == 0)
-		throw std::runtime_error("Array is full");
+		Error::throwException("Array is full");
 	array.push_back(toAdd);
 	_N--;
 }
@@ -39,7 +41,7 @@ void	Span::printArray(void) const
 unsigned int Span::shortestSpan(void)
 {
 	if (array.size() < 2)
-		throw std::runtime_error("There are less than two elements");
+		Error::throwException("There are less than two elements");
 
 	std::vector<int> sorted = array;
 	std::sort(sorted.begin(), sorted.end());;
@@ -53,8 +55,21 @@ unsigned int Span::shortestSpan(void)
 unsigned int	Span::longestSpan(void)
 {
 	if (array.size() < 2)
-		throw std::runtime_error("There are less than two elements");
+		Error::throwException("There are less than two elements");
 	return (*(std::max_element(array.begin(), array.end())) - *(std::min_element(array.begin(), array.end())));
+}
+
+void Span::Error::throwException(std::string toPrint)
+{
+	Span::Error::toPrint = toPrint;
+	throw Error();
+}
+
+Span::Error::~Error() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW{}
+
+const char*	Span::Error::what() const throw()
+{
+	return (toPrint.c_str());
 }
 
 Span::~Span(void)

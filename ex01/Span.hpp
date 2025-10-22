@@ -18,8 +18,19 @@ class Span
 		unsigned int shortestSpan(void);
 		unsigned int longestSpan(void);
 		void	printArray(void) const;
+		class Error: public std::exception
+		{
+			public:
+				static std::string toPrint;
+				static void throwException(std::string Print);
+			private:
+				const char* what() const throw();
+				~Error() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
+		};
+
 
 	private:
 		unsigned int _N;
+		std::string Error;
 		std::vector<int> array;
 };
