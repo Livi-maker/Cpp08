@@ -79,8 +79,11 @@ unsigned int Span::shortestSpan(void)
 	std::sort(sorted.begin(), sorted.end());;
 	unsigned int span = sorted[1] - sorted[0];
 	for (size_t i = 0; i < sorted.size() - 1; i++)
-		if (sorted[i + 1] - sorted[i] < (int)span)
-			span = sorted[i + 1] - sorted[i];
+	{
+		unsigned int newSpan = sorted[i + 1] - sorted[i];
+		if (newSpan < span)
+			span = newSpan;
+	}
 	return (span);
 }
 
